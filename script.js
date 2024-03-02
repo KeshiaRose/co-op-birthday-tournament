@@ -6,6 +6,7 @@ const app = Vue.createApp({
   data() {
     return {
       players: [],
+      retries: 0,
     };
   },
   computed: {
@@ -47,6 +48,8 @@ const app = Vue.createApp({
   },
   methods: {
     async getData() {
+      if (this.retries > 3) return alert('Error fetching data, please refresh!');
+
       const id = '19WkCpZGLbzRrmfmfNF16mI3uIpGZe7NIrkxcknGkD-U';
       const gid = '481070767';
       const url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json&tq&gid=${gid}`;
@@ -64,9 +67,10 @@ const app = Vue.createApp({
             score: row.c[2] ? row.c[2].v : 0,
           };
         });
-        if (players.length === 0) return alert('Error fetching data, please refresh!');
+        if (players.length === 0) return this.retries++;
         this.players = players;
       } catch (error) {
+        this.retries++;
         console.error(error);
         return alert('Error fetching data, please refresh!');
       }
