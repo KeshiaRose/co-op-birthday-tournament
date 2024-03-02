@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/imgs/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/imgs/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="./imgs/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./imgs/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./imgs/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./imgs/apple-touch-icon.png" />
     <meta
       name="description"
       content="A quick little site to display our co-op birthday tournament results."
     />
     <title>Ali & Keshia's Co-Op Birthday Tournament</title>
-    <link rel="icon" href="/imgs/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./imgs/favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script src="script.js?v=11" defer></script>
@@ -24,8 +24,8 @@
       }
     </style>
   </head>
-  <body>
-    <div id="app" class="flex justify-center bg-violet-900">
+  <body class="bg-gradient-to-bl from-violet-900 to-indigo-900">
+    <div id="app" class="flex justify-center">
       <div class="mx-6 max-w-2xl py-8 sm:py-12 flex flex-col gap-y-12">
         <h1 class="text-4xl sm:text-5xl text-center font-bold text-white">
           Ali & Keshia's Co-Op Birthday Tournament
@@ -34,13 +34,14 @@
         <div>
           <div
             v-for="player in rankedPlayers"
-            class="bg-violet-700 rounded-full drop-shadow-md p-3 mb-6 flex justify-between"
+            class="bg-violet-700 rounded-full shadow-lg p-3 mb-6 flex justify-between"
+            :class="player.award ? 'ring-4 ring-cyan-500' : ''"
           >
             <div class="flex just-start items-center gap-4">
               <div v-if="player.award">
                 <img
                   class="h-14 w-14 flex justify-center items-center"
-                  :src="'/imgs/'+player.award+'.png'"
+                  :src="'./imgs/'+player.award+'.png'"
                   :alt="player.award"
                 />
               </div>
@@ -53,7 +54,7 @@
               <img
                 class="h-14 w-14 rounded-full border-2 border-white"
                 :style="{ background: player.color }"
-                :src="'/imgs/'+player.character+'.png'"
+                :src="'./imgs/'+player.character+'.png'"
                 alt=""
               />
               <h3 class="text-3xl font-semibold text-white">{{player.name}}</h3>
