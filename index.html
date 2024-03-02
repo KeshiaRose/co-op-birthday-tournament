@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/imgs/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/imgs/apple-touch-icon.png" />
+    <meta
+      name="description"
+      content="A quick little site to display our co-op birthday tournament results."
+    />
+    <title>Ali & Keshia's Co-Op Birthday Tournament</title>
+    <link rel="icon" href="/imgs/favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="script.js?v=11" defer></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+      * {
+        font-family: 'Inter', sans-serif !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="flex justify-center bg-violet-900">
+      <div class="mx-6 max-w-2xl py-8 sm:py-12 flex flex-col gap-y-12">
+        <h1 class="text-4xl sm:text-5xl text-center font-bold text-white">
+          Ali & Keshia's Co-Op Birthday Tournament
+        </h1>
+        <h1 class="text-4xl sm:text-5xl text-center font-bold text-white">LEADERBOARD</h1>
+        <div>
+          <div
+            v-for="player in rankedPlayers"
+            class="bg-violet-700 rounded-full drop-shadow-md p-3 mb-6 flex justify-between"
+          >
+            <div class="flex just-start items-center gap-4">
+              <div v-if="player.award">
+                <img
+                  class="h-14 w-14 flex justify-center items-center"
+                  :src="'/imgs/'+player.award+'.png'"
+                  :alt="player.award"
+                />
+              </div>
+              <div
+                v-else
+                class="h-14 w-14 flex justify-center items-center text-3xl font-semibold text-white"
+              >
+                {{player.rank}}
+              </div>
+              <img
+                class="h-14 w-14 rounded-full border-2 border-white"
+                :style="{ background: player.color }"
+                :src="'/imgs/'+player.character+'.png'"
+                alt=""
+              />
+              <h3 class="text-3xl font-semibold text-white">{{player.name}}</h3>
+            </div>
+            <div class="flex just-start items-center pr-3">
+              <h3 class="text-3xl font-semibold text-white">{{player.score}}</h3>
+            </div>
+          </div>
+        </div>
+        <h2 class="text-2xl sm:text-3xl text-center font-bold text-white">Tournament Rules</h2>
+        <ol class="list-decimal text-lg sm:text-xl text-white px-6">
+          <li>Ali and Keshia can change the rules at any time</li>
+          <li>Ali and Keshia can take away or add points to anyone at any time</li>
+          <li>Ranked games are scored with standard competition ranking ("1224")</li>
+          <li>We're here to have fun, keep it chill!</li>
+        </ol>
+        <h2 class="text-2xl sm:text-3xl text-center font-bold text-white">Awards</h2>
+        <ul>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Overall 1st Place</span>: The player with the most points the
+            whole night
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Overall 2nd Place</span>: The player with the second most points
+            the whole night
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Overall 3rd Place</span>: The player with the third most points
+            the whole night
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Middle of the Pack</span>: The player who landed perfectly in
+            the middle of all players. (If tie, top player wins)
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Second to Last</span>: The player with the second to last points
+            the whole night
+          </li>
+        </ul>
+        <ul>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Master of Mayhem</span>: The player most likely to cause chaos
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Unshakeable</span>: The player who was the most calm under
+            pressure
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Daredevil</span>: The player who made the most daring or risky
+            moves
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Strategic Saboteur</span>: The player who makes the game harder
+            for others
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Team Captain</span>: The player who best supports their
+            teammates
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Button Smasher</span>: The player who is mostly just smashing
+            random buttons
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Jester</span>: The player with the funniest moments
+          </li>
+          <li class="text-lg sm:text-xl text-white">
+            <span class="font-bold">Joyful Gamer</span>: The player that just came to have fun the
+            most
+          </li>
+        </ul>
+        <h2 class="text-2xl sm:text-3xl text-center font-bold text-white">Fun Awards Voting</h2>
+        <p class="text-lg sm:text-xl text-white">
+          <span class="font-bold">After</span> all the games have been played
+          <a href="https://tally.so/r/nrAQYN" target="_blank">enter your votes</a> for each of the
+          fun awards below and we'll announce them at the award ceremony!
+        </p>
+        <p class="text-lg sm:text-xl text-white">
+          It is OK to vote for yourself for some (not all)!
+        </p>
+
+        <iframe
+          data-tally-src="https://tally.so/embed/nrAQYN?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="1493"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="null"
+        ></iframe>
+        <script>
+          var d = document,
+            w = 'https://tally.so/widgets/embed.js',
+            v = function () {
+              'undefined' != typeof Tally
+                ? Tally.loadEmbeds()
+                : d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function (e) {
+                    e.src = e.dataset.tallySrc;
+                  });
+            };
+          if ('undefined' != typeof Tally) v();
+          else if (d.querySelector('script[src="' + w + '"]') == null) {
+            var s = d.createElement('script');
+            (s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s);
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
