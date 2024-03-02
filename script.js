@@ -91,43 +91,42 @@ const app = Vue.createApp({
 
 app.mount('#app');
 
-const cssDoodleCode = `
-  <css-doodle><style>
-    --color: #a21caf, #4f46e5, #2563eb, #6d28d9;
+// const cssDoodleCode = `
+//   <css-doodle><style>
+//     --color: #a21caf, #4f46e5, #2563eb, #6d28d9;
 
-    @grid: 30x1 / 100vw 100vh / #2e1065;
+//     @grid: 30x1 / 100vw 100vh / #2e1065;
 
-    :container {
-      perspective: 30vmin;
-      --deg: @p(-180deg, 180deg);
-    }
+//     :container {
+//       perspective: 30vmin;
+//       --deg: @p(-180deg, 180deg);
+//     }
 
-    @place: center;
-    @size: 18vmin;
+//     @place: center;
+//     @size: 18vmin;
 
-    background: @m100(
-      radial-gradient(closest-side, @p(--color) 60%, transparent 100%)
-      @r(-20%, 120%) @r(-20%, 100%) / 3px 3px
-      no-repeat
-    );
+//     background: @m100(
+//       radial-gradient(closest-side, @p(--color) 60%, transparent 100%)
+//       @r(-20%, 120%) @r(-20%, 100%) / 3px 3px
+//       no-repeat
+//     );
 
-    will-change: transform, opacity;
-    animation: scale-up 50s linear infinite;
-    animation-delay: calc(-50s / @I * @i);
+//     will-change: transform, opacity;
+//     animation: scale-up 50s linear infinite;
+//     animation-delay: calc(-50s / @I * @i);
 
-
-    @keyframes scale-up {
-      0%, 95.01%, 100% {
-        transform: translateZ(0) rotate(0);
-        opacity: 0;
-      }
-      10%, 95% { 
-        opacity: .2;
-      }
-      50% {
-        transform: translateZ(35vmin) rotateZ(var(--deg));
-      }
-    }
-  </style></css-doodle>
-  `;
-document.getElementById('cssDoodle').innerHTML = cssDoodleCode;
+//     @keyframes scale-up {
+//       0%, 95.01%, 100% {
+//         transform: translateZ(0) rotate(0);
+//         opacity: 0;
+//       }
+//       10%, 95% {
+//         opacity: .2;
+//       }
+//       50% {
+//         transform: translateZ(35vmin) rotateZ(var(--deg));
+//       }
+//     }
+//   </style></css-doodle>
+//   `;
+// document.getElementById('cssDoodle').innerHTML = cssDoodleCode;
