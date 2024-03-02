@@ -18,6 +18,12 @@
     <script src="script.js?v=11" defer></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+      html,
+      body {
+        overflow-x: hidden;
+      }
 
       * {
         font-family: 'Inter', sans-serif !important;
@@ -26,20 +32,62 @@
       [v-cloak] {
         display: none;
       }
+
+      .z-negative {
+        z-index: -1;
+      }
+
+      .fancy-font {
+        font-family: 'Satisfy', 'Inter', sans-serif !important;
+      }
+
+      .white-text-glow {
+        text-shadow: 0 0 8px #ffffff;
+      }
+
+      .violet-text-glow {
+        text-shadow: 0 0 10px #51028d;
+      }
+
+      .glow-box {
+        box-shadow: 0 0 15px #0ea5e9, 0 0 10px #0ea5e9 !important;
+        border-radius: 80px;
+        border: 2px solid #0ea5e9;
+      }
+
+      .skewed-bg {
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        transform: skewX(-20deg);
+        rotate: -5deg;
+        z-index: 0;
+      }
     </style>
   </head>
   <body class="bg-gradient-to-bl from-violet-900 to-indigo-900">
+    <div id="cssDoodle" class="fixed z-negative inset-0 w-full h-full"></div>
     <div id="app" class="flex justify-center">
       <div v-cloak class="mx-6 max-w-2xl py-8 sm:py-12 flex flex-col gap-y-12">
-        <h1 class="text-4xl sm:text-5xl text-center font-bold text-white">
-          Ali & Keshia's Co-Op Birthday Tournament
+        <div class="relative flex items-center justify-center h-32">
+          <div class="bg-gradient-to-bl from-fuchsia-900 to-violet-700 skewed-bg"></div>
+          <h1
+            class="text-5xl sm:text-7xl relative z-10 text-center font-bold text-white fancy-font violet-text-glow"
+          >
+            Ali & Keshia's Co-Op Birthday Tournament
+          </h1>
+        </div>
+        <h1
+          v-if="rankedPlayers.length > 0"
+          class="text-5xl sm:text-7xl text-center font-bold text-white white-text-glow"
+        >
+          LEADERBOARD
         </h1>
-        <h1 class="text-4xl sm:text-5xl text-center font-bold text-white">LEADERBOARD</h1>
         <div>
           <div
             v-for="player in rankedPlayers"
-            class="bg-violet-700 rounded-full shadow-lg p-3 mb-6 flex justify-between"
-            :class="player.award ? 'ring-4 ring-cyan-500' : ''"
+            class="bg-gradient-to-tl from-violet-900 to-indigo-700 rounded-full shadow-lg p-3 mb-6 flex justify-between"
+            :class="player.award ? 'glow-box' : ''"
           >
             <div class="flex just-start items-center gap-4">
               <div v-if="player.award" class="shrink-0 h-14 w-14 flex justify-center items-center">
@@ -73,6 +121,13 @@
           <li>Ali and Keshia can change the rules at any time</li>
           <li>Ali and Keshia can take away or add points to anyone at any time</li>
           <li>Ranked games are scored with standard competition ranking ("1224")</li>
+          <li>
+            Ties for prizes will be solved with sudden death rounds (or just rock-paper-scissors)
+          </li>
+          <li>
+            Players will be grouped based on current score for team-based games. (ie: first with
+            last)
+          </li>
           <li>We're here to have fun, keep it chill!</li>
         </ol>
         <h2 class="text-2xl sm:text-3xl text-center font-bold text-white">Awards</h2>
@@ -168,5 +223,6 @@
         </script>
       </div>
     </div>
+    <script src="https://unpkg.com/css-doodle@0.34.0/css-doodle.min.js"></script>
   </body>
 </html>
